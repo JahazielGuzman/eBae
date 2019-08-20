@@ -10,6 +10,30 @@ div.search-bar {
     overflow: hidden;
 }
 
+input#myinput {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 40px;
+    left: 172px;
+    margin: 4px 0;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+div.space{
+    margin: 10px;
+}
+
+div#columnsWrapper {
+    margin-top: 20px;
+}
+
 div#overlay {
 	display: none;
 	z-index: 2;
