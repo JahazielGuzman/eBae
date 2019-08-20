@@ -11,19 +11,56 @@ function itemIndexer(items){
 }
 
 function listItems(item){
-	wrapper = document.getElementById('columnsWrapper')
-	div = document.createElement('div')
-		div.className = 'card column space'
-		div.innerHTML = `
-		<h1>${item.name}</h1>
-		<p>${item.price}</p>
-		<p>seller: ${item.user_id}</p>`
-	wrapper.appendChild(div)
+	const body = document.getElementById('body')
+	const wrapper = document.getElementById('wrapper')
+	
+
+	const indexDiv = document.createElement('div')
+		indexDiv.innerHTML = `<h1>${item.name}</h1>`
+		wrapper.appendChild(indexDiv)
+
+
+	const overlayDiv = document.createElement('div')
+		overlayDiv.className = 'overlay'
+		body.appendChild(overlayDiv)
+
+
+	const specialBoxDiv = document.createElement('div')
+		specialBoxDiv.className = 'specialBox'
+		specialBoxDiv.innerHTML = `<h1>${item.description}</h1>`
+		body.appendChild(specialBoxDiv)	
+		
+
+	indexDiv.addEventListener("click", () => {
+		overlayDiv.style.opacity = .8;
+		// specialBoxDiv.appendChild(overlayBtn)
+
+		if(overlayDiv.style.display == "block"){
+			overlayDiv.style.display = "none";
+			specialBoxDiv.style.display = "none";
+		} else {
+			overlayDiv.style.display = "block";
+			specialBoxDiv.style.display = "block";
+		}
+	})
+
+	overlayDiv.addEventListener("click", () => {
+		overlayDiv.style.opacity = 0;
+		
+		if(overlayDiv.style.display == "block"){
+			overlayDiv.style.display = "none";
+			specialBoxDiv.style.display = "none";
+		} else {
+			overlayDiv.style.display = "block";
+			specialBoxDiv.style.display = "block";
+		}
+	})
 }
+
 
 function toggleOverlay(){
 	var overlay = document.getElementById('overlay');
-    var specialBox = document.getElementById('specialBox'); //<--need to get element by classname instead of ID
+    var specialBox = document.getElementById('specialBox');
     
 	overlay.style.opacity = .8;
 	if(overlay.style.display == "block"){
@@ -35,20 +72,20 @@ function toggleOverlay(){
 	}
 }
 
-function searchFunction() {
-	var input, filter, ul, li, a, i;
-    filter = input.value.toUpperCase();
+// function searchFunction() {
+// 	var input, filter, ul, li, a, i;
+//     filter = input.value.toUpperCase();
 	
-    input = document.getElementById('myinput');
-    ul = document.getElementById('wrapper');
-    li = ul.getElementsByTagName('li');
+//     input = document.getElementById('myinput');
+//     ul = document.getElementById('wrapper');
+//     li = ul.getElementsByTagName('li');
 
-    for(i=0 ; i< li.length; i++){
-        a = li[i].getElementsByTagName('a')[0];
-			if(a.innerHTML.toUpperCase().indexOf(filter) > -1){
-				li[i].style.display = "";
-			} else {
-			li[i].style.display = 'none';
-			}
-    }
-}
+//     for(i=0 ; i< li.length; i++){
+//         a = li[i].getElementsByTagName('a')[0];
+// 			if(a.innerHTML.toUpperCase().indexOf(filter) > -1){
+// 				li[i].style.display = "";
+// 			} else {
+// 			li[i].style.display = 'none';
+// 			}
+//     }
+// }

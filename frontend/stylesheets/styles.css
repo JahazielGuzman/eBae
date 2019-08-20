@@ -26,16 +26,7 @@ input#myinput {
     font-weight: 400;
 }
 
-div.space{
-    margin-left: 10px;
-    margin-right: 20px;
-}
-
-div#columnsWrapper {
-    margin-top: 20px;
-}
-
-div#overlay {
+div.overlay {
 	display: none;
 	z-index: 2;
 	background: #000;
@@ -46,7 +37,7 @@ div#overlay {
 	left: 0px;
 	text-align: center;
 }
-div#specialBox {
+div.specialBox {
 	display: none;
 	position: relative;
 	z-index: 3;
