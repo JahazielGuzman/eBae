@@ -27,7 +27,8 @@ input#myinput {
 }
 
 div.space{
-    margin: 10px;
+    margin-left: 10px;
+    margin-right: 20px;
 }
 
 div#columnsWrapper {
