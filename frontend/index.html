@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>eBae</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylesheets/styles.css">
+        <link rel="stylesheet" href="stylesheets/bulma.css">
+    </head>
+    <body>
+    <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" name="search" value="" autocomplete="off" id="myinput" onkeyup="searchFunction()" placeholder="Search">
+        </div>
+    <!-- End Search Bar -->
+
+
+
+    <!-- Start Overlay -->
+        <div id="overlay"></div>
+    <!-- End Overlay -->
+
+    <!-- Start Special Centered Box -->
+        <div id="specialBox">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatum voluptatem dolores animi odio inventore dignissimos dolor! Consectetur dignissimos nobis repellendus amet quibusdam aut ut molestiae reprehenderit veniam, eius libero.</p> 
+            <button onmousedown="toggleOverlay()">Close Overlay</button>
+        </div>
+    <!-- End Special Centered Box -->
+
+    <!-- Start Normal Page Content -->
+        <div id="wrapper">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro magni eaque ipsum architecto quasi ab quibusdam dolores ducimus neque ut? In alias obcaecati autem, nisi ab fuga veniam dolor aut.</p>
+            <button onmousedown="toggleOverlay()">Apply Overlay</button>
+            <div id= "columnsWrapper" class='columns'></div>
+        </div>
+    <!-- End Normal Page Content -->
+        
+        <script type ='text/javascript' src="src/index.js" ></script>
+    </body>
+</html>
