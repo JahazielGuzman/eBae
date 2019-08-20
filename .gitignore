@@ -5,20 +5,23 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+Backend/.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+/backend/db/*.sqlite3
+/backend/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
+/backend/log/*
+/backend/tmp/*
 !/log/.keep
 !/tmp/.keep
 
+# Ignore schema file, should be generate after every migrate on each local copy
+/backend/db/schema.rb
+
 # Ignore uploaded files in development
-/storage/*
+backend/storage/*
 !/storage/.keep
 
 .byebug_history
