@@ -1,9 +1,32 @@
 document.addEventListener("DOMContentLoaded", function(){
-	fetch('http://localhost:3000/items')
-		.then(res => res.json())
-		.then(itemIndexer)
 
-})
+	let search_button = document.querySelector("#search_button");
+	let search_input = document.querySelector("#myinput");
+	let wrapper = document.querySelector('#wrapper');
+
+	search_button.addEventListener("click", searchItems)
+
+	function searchItems(event) {
+
+		event.preventDefault();
+		fetch(`http://localhost:3000/items?search=${search_input.value}`)
+			.then(res => res.json())
+			.then(items => items.forEach(slapItemOnDOM))
+	}
+
+	function slapItemOnDOM(item) {
+
+			div = document.createElement('div');
+			div.className = 'card column space';
+			div.innerHTML = `
+			<img src=${item.img_url}>
+			<h1>${item.name}</h1>
+			<p>$ ${item.price}</p>
+			<p>seller: ${item.user.name}</p>`;
+			wrapper.appendChild(div);
+	}
+});
+
 
 function itemIndexer(items){
 	console.log(items)
