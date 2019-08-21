@@ -24,14 +24,15 @@ function searchItems(event) {
 }
 
 function itemIndexer(items){
-	console.log(items)
 	items.forEach(listItems)
 }
 
 
 wrapper.addEventListener("click", (e) => {
 
-	if (e.target.parentElement.className === "card item-card") {	
+	const itemCard = e.target.closest('.item-card');
+	if (itemCard) {
+		
 		overlayDiv.style.opacity = .8;
 		// specialBoxDiv.appendChild(overlayBtn)
 
@@ -43,12 +44,13 @@ wrapper.addEventListener("click", (e) => {
 			specialBoxDiv.style.display = "block";
 		}
 
-		specialBoxDiv.innerHTML = `<h1>name ${e.target.parentElement.dataset.name}</h1>
-					<h1>desc ${e.target.parentElement.dataset.description}</h1>
-					<h1>price ${e.target.parentElement.dataset.price}</h1>
-					<h1>state ${e.target.parentElement.dataset.state}</h1>
-					<h1>img ${e.target.parentElement.dataset.img_url}</h1>
-					<h1>user ${e.target.parentElement.dataset.id}</h1>`
+		specialBoxDiv.innerHTML = `
+				<img src="${itemCard.dataset.img_url}" style="width:300px;height:300;">
+				<h1 class='subtitle'><strong>${itemCard.dataset.name}</strong></h1>
+				<p>${itemCard.dataset.description}</p>
+				<h2>Price: <span class='dolla'>$</span><strong>${itemCard.dataset.price}</strong></h2>
+				<button class='button' style="background-color: orange;">Buy</button>`
+		
 	}
 })
 overlayDiv.addEventListener("click", () => {
@@ -82,13 +84,12 @@ function listItems(item){
 	const contentDiv = document.createElement('div')
 		contentDiv.className = 'card-content'
 		contentDiv.innerHTML = `
-			<h1>${item.name}</h1>
-			<p>${item.description}</p>
-			<p>${item.state}</p>`
+			<h1 class='subtitle'><strong>${item.name}</strong></h1>
+			<p>${item.description}</p>`
 
 		wrapper.appendChild(indexDiv)
 		indexDiv.appendChild(cardImgDiv)
 		indexDiv.appendChild(contentDiv)
-		cardImgDiv.appendchild(cardFigure)
+		cardImgDiv.appendChild(cardFigure)
 
 }
