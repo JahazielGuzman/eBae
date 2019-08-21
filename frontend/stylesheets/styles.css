@@ -48,11 +48,15 @@ div.specialBox {
 	color: #000;
 }
 div#wrapper {
-	position:absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: absolute;
 	top: 120px;
 	left: 0px;
-	padding-left:24px;
+    padding-left:24px;
 }
+
 
 button.search_button {
 
