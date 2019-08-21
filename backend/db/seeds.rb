@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.delete_all
+# User.delete_all
 Item.delete_all
 
 5.times do
@@ -18,6 +18,6 @@ end
 		description: Faker::Quotes::Shakespeare.hamlet_quote, 
 		state: "sell",
 		price: (10..100).to_a.sample,
-		img_url: "..\\pubic\\I60Hf.png",
+		img_url: "..\\backend\\public\\l60Hf.png",
 		user: User.all.sample)
 end

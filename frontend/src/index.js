@@ -43,14 +43,15 @@ function searchItems(event) {
 }
 
 function itemIndexer(items){
-	console.log(items)
 	items.forEach(listItems)
 }
 
 
 wrapper.addEventListener("click", (e) => {
 
-	if (e.target.parentElement.className === "item-card") {	
+	const itemCard = e.target.closest('.item-card');
+	if (itemCard) {
+		
 		overlayDiv.style.opacity = .8;
 		// specialBoxDiv.appendChild(overlayBtn)
 
@@ -62,14 +63,12 @@ wrapper.addEventListener("click", (e) => {
 			specialBoxDiv.style.display = "block";
 		}
 
-		specialBoxDiv.innerHTML = `<h1>name${e.target.parentElement.dataset.name}</h1>
-					<h1>desc${e.target.parentElement.dataset.description}</h1>
-					<h1>price${e.target.parentElement.dataset.price}</h1>
-					<h1>state${e.target.parentElement.dataset.state}</h1>
-					<h1>img${e.target.parentElement.dataset.img_url}</h1>
-					<h1>user${e.target.parentElement.dataset.id}</h1>
-					<button></button>`
-
+		specialBoxDiv.innerHTML = `
+				<img src="${itemCard.dataset.img_url}" style="width:300px;height:300;">
+				<h1 class='subtitle'><strong>${itemCard.dataset.name}</strong></h1>
+				<p>${itemCard.dataset.description}</p>
+				<h2>Price: <span class='dolla'>$</span><strong>${itemCard.dataset.price}</strong></h2>
+				<button class='button' style="background-color: orange;" id="buy-button">Buy</button>`
 	}
 })
 overlayDiv.addEventListener("click", () => {
@@ -87,8 +86,7 @@ overlayDiv.addEventListener("click", () => {
 function listItems(item){
 
 	const indexDiv = document.createElement('div')
-		indexDiv.className = "item-card"
-		indexDiv.innerHTML = `<h1>${item.name}</h1>`
+		indexDiv.className = "card item-card"
 		indexDiv.dataset.description = item.description;
 		indexDiv.dataset.name = item.name
 		indexDiv.dataset.price = item.price
@@ -96,25 +94,20 @@ function listItems(item){
 		indexDiv.dataset.img_url = item.img_url
 		indexDiv.dataset.id = item.user_id
 
+	const cardImgDiv = document.createElement('div')
+		cardImgDiv.className = 'card-image'
+	const cardFigure = document.createElement('figure')
+		cardFigure.className = 'image is-4by3'
+		cardFigure.innerHTML = `<img src="${item.img_url}">`
+	const contentDiv = document.createElement('div')
+		contentDiv.className = 'card-content'
+		contentDiv.innerHTML = `
+			<h1 class='subtitle'><strong>${item.name}</strong></h1>
+			<p>${item.description}</p>`
+
 		wrapper.appendChild(indexDiv)
+		indexDiv.appendChild(cardImgDiv)
+		indexDiv.appendChild(contentDiv)
+		cardImgDiv.appendChild(cardFigure)
 
 }
-
-
-// function searchFunction() {
-// 	var input, filter, ul, li, a, i;
-//     filter = input.value.toUpperCase();
-	
-//     input = document.getElementById('myinput');
-//     ul = document.getElementById('wrapper');
-//     li = ul.getElementsByTagName('li');
-
-//     for(i=0 ; i< li.length; i++){
-//         a = li[i].getElementsByTagName('a')[0];
-// 			if(a.innerHTML.toUpperCase().indexOf(filter) > -1){
-// 				li[i].style.display = "";
-// 			} else {
-// 			li[i].style.display = 'none';
-// 			}
-//     }
-// }
