@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="stylesheets/bulma.css">
     </head>
     <body id='body'>
+        <span id="user" data-name="" data-id=""></span>
     <!-- Search Bar -->
         <div class="search-bar">
             <input type="text" name="search" value="" autocomplete="off" id="myinput" placeholder="Search"><button class="search_button" id="search_button">  &#128269;</button>
@@ -23,9 +24,12 @@
 
 
     <!-- Start Normal Page Content -->
-        <div id="wrapper"></div>
+        <div id="wrapper">
+            <label for="user-id">User:</label>
+            <input id="user-id" type="number" name="id">
+            <button id="login">login</button>
+        </div>
     <!-- End Normal Page Content -->
-        
         <script type ='text/javascript' src="src/index.js" ></script>
     </body>
 </html>

@@ -1,3 +1,4 @@
+const BASE_URL = "http://localhost:3000";
 const ITEMS_URL = "http://localhost:3000/items";
 const overlayDiv = document.getElementById('overlay')
 const specialBoxDiv = document.getElementById('specialBox')
@@ -5,14 +6,32 @@ const body = document.getElementById('body')
 const wrapper = document.getElementById('wrapper')
 const search_button = document.querySelector("#search_button");
 const search_input = document.querySelector("#myinput");
+const userBox = document.querySelector('#user');
+const loginButton = document.querySelector('#login');
+const loginInput = document.querySelector('#user-id');
 overlayDiv.className = 'overlay'
 specialBoxDiv.className = 'specialBox'
 
-fetch(ITEMS_URL)
-.then(res => res.json())
-.then(itemIndexer)
+function initialItems() {
 
-search_button.addEventListener("click", searchItems)
+	fetch(ITEMS_URL)
+	.then(res => res.json())
+	.then(itemIndexer);
+}
+
+initialItems();
+search_button.addEventListener("click", searchItems);
+loginButton.addEventListener("click", function () {
+
+	const userId = loginInput.value;
+	fetch(`${BASE_URL}/login?id=${userId}`)
+	.then(res => res.json())
+	.then(user => {
+		userBox.dataset.name = user.name;
+		userBox.dataset.id = user.id;
+	});
+});
+
 
 function searchItems(event) {
 
@@ -48,7 +67,9 @@ wrapper.addEventListener("click", (e) => {
 					<h1>price${e.target.parentElement.dataset.price}</h1>
 					<h1>state${e.target.parentElement.dataset.state}</h1>
 					<h1>img${e.target.parentElement.dataset.img_url}</h1>
-					<h1>user${e.target.parentElement.dataset.id}</h1>`
+					<h1>user${e.target.parentElement.dataset.id}</h1>
+					<button></button>`
+
 	}
 })
 overlayDiv.addEventListener("click", () => {
