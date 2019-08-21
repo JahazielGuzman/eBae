@@ -18,6 +18,6 @@ end
 		description: Faker::Quotes::Shakespeare.hamlet_quote, 
 		state: "sell",
 		price: (10..100).to_a.sample,
-		img_url: "..\\pubic\\I60Hf.png",
+		img_url: "..\\backend\\public\\l60Hf.png",
 		user: User.all.sample)
 end
