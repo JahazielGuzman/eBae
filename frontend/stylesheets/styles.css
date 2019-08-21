@@ -53,3 +53,12 @@ div#wrapper {
 	left: 0px;
 	padding-left:24px;
 }
+
+button.search_button {
+
+    position: absolute;
+    height: 48px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}

@@ -1,17 +1,27 @@
-document.addEventListener("DOMContentLoaded", function(){
-	fetch('http://localhost:3000/items')
-		.then(res => res.json())
-		.then(itemIndexer)
-
-
-})
-
+const ITEMS_URL = "http://localhost:3000/items";
 const overlayDiv = document.getElementById('overlay')
 const specialBoxDiv = document.getElementById('specialBox')
 const body = document.getElementById('body')
 const wrapper = document.getElementById('wrapper')
+const search_button = document.querySelector("#search_button");
+const search_input = document.querySelector("#myinput");
 overlayDiv.className = 'overlay'
 specialBoxDiv.className = 'specialBox'
+
+fetch(ITEMS_URL)
+.then(res => res.json())
+.then(itemIndexer)
+
+search_button.addEventListener("click", searchItems)
+
+function searchItems(event) {
+
+	wrapper.innerHTML = "";
+	event.preventDefault();
+	fetch(`${ITEMS_URL}?search=${search_input.value}`)
+		.then(res => res.json())
+		.then(itemIndexer)
+}
 
 function itemIndexer(items){
 	console.log(items)

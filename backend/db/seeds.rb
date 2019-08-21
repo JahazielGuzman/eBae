@@ -6,16 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-joe = User.create(name: "joe", balance: 300, img_url: "")
-jaha = User.create(name: "jahaziel", balance: 200, img_url: "")
-dan = User.create(name: "dan", balance: 5000, img_url: "")
+User.delete_all
+Item.delete_all
 
+5.times do
+	User.create(name: Faker::GreekPhilosophers.name, balance: (50..500).to_a.sample, img_url: "..\\pubic\\I60Hf.png")
+end
 
-Item.create(name: "ball", description: "round as shit", state: "being sold", price: 10, img_url: "", user: joe)
-Item.create(name: "banana", description: "tasty", state: "being sold", price: 1, img_url: "", user: joe)
-Item.create(name: "scooter", description: "dangerous", state: "being sold", price: 50, img_url: "", user: jaha)
-Item.create(name: "candle", description: "firey", state: "being sold", price: 10, img_url: "", user: jaha)
-Item.create(name: "table", description: "oneword", state: "being sold", price: 34, img_url: "", user: dan)
-Item.create(name: "chair", description: "oneword", state: "being sold", price: 54, img_url: "", user: dan)
-Item.create(name: "bullshit", description: "oneword", state: "being sold", price: 643, img_url: "", user: dan)
-Item.create(name: "other bullshit", description: "oneword", state: "being sold", price: 232, img_url: "", user: dan)
+10.times do
+	Item.create(name: Faker::Commerce.product_name, 
+		description: Faker::Quotes::Shakespeare.hamlet_quote, 
+		state: "sell",
+		price: (10..100).to_a.sample,
+		img_url: "..\\pubic\\I60Hf.png",
+		user: User.all.sample)
+end
