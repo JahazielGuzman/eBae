@@ -67,7 +67,7 @@ wrapper.addEventListener("click", (e) => {
 				<img src="${itemCard.dataset.img_url}" style="width:300px;height:300;">
 				<h1 class='subtitle'><strong>${itemCard.dataset.name}</strong></h1>
 				<p>${itemCard.dataset.description}</p>
-				<h2>Price: <span class='dolla'>$</span><strong>${itemCard.dataset.price}</strong></h2>
+				<h2>Price: <strong><span class='dolla'>$</span>${itemCard.dataset.price}</strong></h2>
 				<button class='button' style="background-color: orange;" id="buy-button">Buy</button>`
 	}
 })
@@ -111,3 +111,4 @@ function listItems(item){
 		cardImgDiv.appendChild(cardFigure)
 
 }
+

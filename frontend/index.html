@@ -8,19 +8,29 @@
         <link rel="stylesheet" href="stylesheets/styles.css">
         <link rel="stylesheet" href="stylesheets/bulma.css">
     </head>
+    <header></header>
     <body id='body'>
         <span id="user" data-name="" data-id=""></span>
+
+    <!-- New Item -->
+    <div class="new-item">
+        <button id="new-item-btn" class="button is-link is-large">Sell your bullshit</button>
+    </div>
+    <!-- End New Item -->
+
     <!-- Search Bar -->
         <div class="search-bar">
-            <input type="text" name="search" value="" autocomplete="off" id="myinput" placeholder="Search"><button class="search_button" id="search_button">  &#128269;</button>
-        </div>
-
-        <div class="login-div">
-            <label for="user-id">User:</label>
-            <input id="user-id" type="number" name="id">
-            <button id="login">login</button>
+            <input type="text" name="search" value="" autocomplete="off" id="myinput" placeholder="Search">
+            <button class="search_button" id="search_button">  &#128269;</button>
         </div>
     <!-- End Search Bar -->
+
+    <!-- Login -->
+        <div class="login-div">
+            <input id="user-id" type="number" name="id" placeholder="Enter User Number">
+            <button id="login" class="button is-link login-btn">login</button>
+        </div>
+    <!-- Login -->
 
     <!-- Start Overlay -->
         <div id="overlay">
@@ -29,7 +39,6 @@
     <!-- End Overlay -->
 
         <div id="specialBox"></div>
-
 
     <!-- Start Normal Page Content -->
         <div id="wrapper">
