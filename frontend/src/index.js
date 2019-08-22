@@ -30,6 +30,11 @@ loginButton.addEventListener("click", function () {
 		console.log(user);
 		userBox.dataset.name = user.name;
 		userBox.dataset.id = user.id;
+	 	Swal.fire({
+			  type: 'success',
+			  title: `Welcome back ${user.name}! Enjoy your shopping experience!`,
+			  showConfirmButton: true,
+			})
 	});
 });
 
@@ -51,13 +56,62 @@ specialBoxDiv.addEventListener("click", (e) => {
 			.then((json) => {
 				console.log(json);
 				if (json.response === "success")
-					alert("you have bought the item!")
+					// you have bought the item
+					Swal.fire({
+					  type: 'success',
+					  title: 'You have bought the item!',
+					  showConfirmButton: true,
+					}).then(
+						() => {
+							overlayDiv.style.opacity = 0;
+							
+							if(overlayDiv.style.display == "block"){
+								overlayDiv.style.display = "none";
+								specialBoxDiv.style.display = "none";
+							} else {
+								overlayDiv.style.display = "block";
+								specialBoxDiv.style.display = "block";
+							}
+						}
+					)
 				else
-					alert("you are not logged in")
+					// you are not logged in
+					Swal.fire({
+					  type: 'error',
+					  title: 'You must be logged in to buy items!',
+					  showConfirmButton: true,
+					}).then(
+						() => {
+							overlayDiv.style.opacity = 0;
+							
+							if(overlayDiv.style.display == "block"){
+								overlayDiv.style.display = "none";
+								specialBoxDiv.style.display = "none";
+							} else {
+								overlayDiv.style.display = "block";
+								specialBoxDiv.style.display = "block";
+							}
+						}
+					)
 			});
 		}
 		else {
-			alert("You need to login to buy something")
+			// show error because you are not logged in
+			Swal.fire({
+			  type: 'error',
+			  title: 'You must be logged in to buy items!',
+			  showConfirmButton: true,
+			}).then(() => {
+					overlayDiv.style.opacity = 0;
+					
+					if(overlayDiv.style.display == "block"){
+						overlayDiv.style.display = "none";
+						specialBoxDiv.style.display = "none";
+					} else {
+						overlayDiv.style.display = "block";
+						specialBoxDiv.style.display = "block";
+					}
+				})
 		}
 	}
 });
