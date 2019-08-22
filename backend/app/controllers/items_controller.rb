@@ -20,4 +20,20 @@ class ItemsController < ApplicationController
 		item = User.find(params[:item_id])
 		item.user = buyer
 	end
+
+	def def new
+		item = Item.new
+	end
+	
+
+	def create
+		item = Item.create(item_params)
+
+		render json: item
+	end
+
+	def item_params
+		params.require(:item).permit(:name, :description, :price, :img_url, :user_id, :state)
+	end
+
 end

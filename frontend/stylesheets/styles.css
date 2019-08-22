@@ -1,3 +1,4 @@
+/*---------- Search Bar */
 div.search-bar {
     position: relative;
     margin: 50px auto;
@@ -10,28 +11,12 @@ div.search-bar {
     overflow: hidden;
 }
 
-div.login-div {
+button.search_button {
     position: absolute;
-    margin: 50px auto;
-    width: 95%;
-    max-width: 344px;
     height: 48px;
-    top: 0px;
-    right: 30px;
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-div.new-item {
-    position: absolute;
-    margin: 50px auto;
-    /* width: 95%; */
-    max-width: 300px;
-    top: 0px;
-    left: 100px;
-    overflow: hidden;
 }
 
 input#myinput {
@@ -49,7 +34,31 @@ input#myinput {
     font-size: 16px;
     font-weight: 400;
 }
+/*---------- End Search Bar */
 
+/*---------- Login */
+
+div.login-div {
+    position: absolute;
+    margin: 50px auto;
+    width: 95%;
+    max-width: 344px;
+    height: 48px;
+    top: 0px;
+    right: 30px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+button.login-btn {
+    position: absolute;
+    right: 0px;
+    height: 48px;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
 input#user-id {
     position: absolute;
     left: 50%;
@@ -63,28 +72,38 @@ input#user-id {
     font-size: 16px;
     font-weight: 400;
 }
+/*---------- End Login */
 
-div.overlay {
-	display: none;
-	z-index: 2;
-	background: #000;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	text-align: center;
+/*---------- New Item/Sell your bullshit */
+
+div.new-item {
+    position: absolute;
+    margin: 50px auto;
+    /* width: 95%; */
+    max-width: 300px;
+    top: 0px;
+    left: 100px;
+    overflow: hidden;
 }
-div.specialBox {
-	display: none;
-	position: relative;
-	z-index: 3;
-	margin: 0px auto 0px auto;
-	width: 300px; 
-	height: 500px;
-	background: #FFF;
-	color: #000;
+
+div#new-item-specialBox-div {
+    display: none;
+    position: relative;
+    z-index: 3;
+    margin: 0px auto 0px auto;
+    width: 400px; 
+    height: 600px;
+    background: #FFF;
+    color: #000;
 }
+
+form#new-item-form {
+    padding: 20px;
+}
+/*---------- End new Item */
+
+/*---------- Index */
+
 div#wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -102,6 +121,33 @@ div.item-card {
 
 div.item-card h1 {
     text-align: center;
+}
+
+/*---------- End Index */
+
+/*---------- Index Modal */
+
+div.overlay {
+    display: none;
+    z-index: 2;
+    background: #000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+}
+
+div.specialBox {
+    display: none;
+    position: relative;
+    z-index: 3;
+    margin: 0px auto 0px auto;
+    width: 300px; 
+    height: 500px;
+    background: #FFF;
+    color: #000;
 }
 
 div#specialBox h1 {
@@ -132,19 +178,4 @@ span.dolla {
     color: green;
 }
 
-
-button.search_button {
-    position: absolute;
-    height: 48px;
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-button.login-btn {
-    position: absolute;
-    right: 0px;
-    height: 48px;
-    border-radius: 2px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
+/*---------- End Index Modal */

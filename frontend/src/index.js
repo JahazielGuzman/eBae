@@ -53,7 +53,6 @@ wrapper.addEventListener("click", (e) => {
 	if (itemCard) {
 		
 		overlayDiv.style.opacity = .8;
-		// specialBoxDiv.appendChild(overlayBtn)
 
 		if(overlayDiv.style.display == "block"){
 			overlayDiv.style.display = "none";
@@ -73,10 +72,12 @@ wrapper.addEventListener("click", (e) => {
 })
 overlayDiv.addEventListener("click", () => {
 	overlayDiv.style.opacity = 0;
+	newItemForm.reset();
 	
 	if(overlayDiv.style.display == "block"){
 		overlayDiv.style.display = "none";
 		specialBoxDiv.style.display = "none";
+		newItemSpecialBoxDiv.style.display = "none";
 	} else {
 		overlayDiv.style.display = "block";
 		specialBoxDiv.style.display = "block";
@@ -92,7 +93,10 @@ function listItems(item){
 		indexDiv.dataset.price = item.price
 		indexDiv.dataset.state = item.state
 		indexDiv.dataset.img_url = item.img_url
-		indexDiv.dataset.id = item.user_id
+		indexDiv.dataset.id = item.id
+		indexDiv.dataset.user_id = item.user_id
+
+		
 
 	const cardImgDiv = document.createElement('div')
 		cardImgDiv.className = 'card-image'
@@ -110,5 +114,81 @@ function listItems(item){
 		indexDiv.appendChild(contentDiv)
 		cardImgDiv.appendChild(cardFigure)
 
-}
+	}
+	
+	//--------------------New Item--------------->
+	
+	const newItemBtn = document.getElementById('new-item-btn')
+	const newItemSpecialBoxDiv = document.getElementById('new-item-specialBox-div')
+	const cancelBtn = document.getElementById('cancel')
+	
+newItemBtn.addEventListener('click', () => {
+	overlayDiv.style.opacity = 0.8;
+	
+	if(overlayDiv.style.display == "block"){
+		overlayDiv.style.display = "none";
+		newItemSpecialBoxDiv.style.display = "none";
+	} else {
+		overlayDiv.style.display = "block";
+		newItemSpecialBoxDiv.style.display = "block";
+	}
+})
 
+const newItemForm = document.getElementById('new-item-form')
+
+newItemForm.addEventListener('submit', () => {
+	event.preventDefault()
+
+	const nameInput = document.getElementById('name-input')
+	const descInput = document.getElementById('desc-input')
+	const imgInput = document.getElementById('img-input')
+	const priceInput = document.getElementById('price-input')
+
+	fetch(ITEMS_URL, {
+		method: "POST",
+		headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+		}, 
+		body: JSON.stringify({ 
+            "name": nameInput.value, 
+			"description": descInput.value,
+			"price": priceInput.value,
+			"img_url": imgInput.value,
+			"user_id": 2,
+			"state": "sell"
+		})
+	}).then(res => res.json())
+	.then((item) => {
+		listItems(item);
+		newItemForm.reset();
+		return Swal.fire({
+			type: 'success',
+			title: 'Your item is up for sale! Happy Selling!',
+			showConfirmButton: true
+		})
+	}).then(() => {
+		overlayDiv.style.opacity = 0.8;
+		
+		if(overlayDiv.style.display == "block"){
+			overlayDiv.style.display = "none";
+			newItemSpecialBoxDiv.style.display = "none";
+		} else {
+			overlayDiv.style.display = "block";
+			newItemSpecialBoxDiv.style.display = "block";
+		}
+	})
+
+})
+
+// cancelBtn.addEventListener('click', () => {
+// 	console.log(cancelBtn)
+// 	if(overlayDiv.style.display == "block"){
+// 		console.log("Yo");
+// 		overlayDiv.style.display = "none";
+// 		newItemSpecialBoxDiv.style.display = "none";
+// 	} else {
+// 		overlayDiv.style.display = "block";
+// 		newItemSpecialBoxDiv.style.display = "block";
+// 	}
+// })
