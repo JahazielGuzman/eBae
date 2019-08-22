@@ -27,9 +27,93 @@ loginButton.addEventListener("click", function () {
 	fetch(`${BASE_URL}/login?id=${userId}`)
 	.then(res => res.json())
 	.then(user => {
+		console.log(user);
 		userBox.dataset.name = user.name;
 		userBox.dataset.id = user.id;
+	 	Swal.fire({
+			  type: 'success',
+			  title: `Welcome back ${user.name}! Enjoy your shopping experience!`,
+			  showConfirmButton: true,
+			})
 	});
+});
+
+specialBoxDiv.addEventListener("click", (e) => {
+
+	if (e.target.id === "buy-button") {
+		if (userBox.dataset.id !== undefined) {
+			console.log("you can boy now!");
+			const itemId = e.target.dataset.id;
+			fetch(`${BASE_URL}/items/${itemId}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json"
+				},
+				body: JSON.stringify({item_id: itemId, user_id: userBox.dataset.id})
+			})
+			.then(res => res.json())
+			.then((json) => {
+				console.log(json);
+				if (json.response === "success")
+					// you have bought the item
+					Swal.fire({
+					  type: 'success',
+					  title: 'You have bought the item!',
+					  showConfirmButton: true,
+					}).then(
+						() => {
+							overlayDiv.style.opacity = 0;
+							
+							if(overlayDiv.style.display == "block"){
+								overlayDiv.style.display = "none";
+								specialBoxDiv.style.display = "none";
+							} else {
+								overlayDiv.style.display = "block";
+								specialBoxDiv.style.display = "block";
+							}
+						}
+					)
+				else
+					// you are not logged in
+					Swal.fire({
+					  type: 'error',
+					  title: 'You must be logged in to buy items!',
+					  showConfirmButton: true,
+					}).then(
+						() => {
+							overlayDiv.style.opacity = 0;
+							
+							if(overlayDiv.style.display == "block"){
+								overlayDiv.style.display = "none";
+								specialBoxDiv.style.display = "none";
+							} else {
+								overlayDiv.style.display = "block";
+								specialBoxDiv.style.display = "block";
+							}
+						}
+					)
+			});
+		}
+		else {
+			// show error because you are not logged in
+			Swal.fire({
+			  type: 'error',
+			  title: 'You must be logged in to buy items!',
+			  showConfirmButton: true,
+			}).then(() => {
+					overlayDiv.style.opacity = 0;
+					
+					if(overlayDiv.style.display == "block"){
+						overlayDiv.style.display = "none";
+						specialBoxDiv.style.display = "none";
+					} else {
+						overlayDiv.style.display = "block";
+						specialBoxDiv.style.display = "block";
+					}
+				})
+		}
+	}
 });
 
 
@@ -95,8 +179,6 @@ function listItems(item){
 		indexDiv.dataset.img_url = item.img_url
 		indexDiv.dataset.id = item.id
 		indexDiv.dataset.user_id = item.user_id
-
-		
 
 	const cardImgDiv = document.createElement('div')
 		cardImgDiv.className = 'card-image'
