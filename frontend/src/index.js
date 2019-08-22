@@ -27,9 +27,39 @@ loginButton.addEventListener("click", function () {
 	fetch(`${BASE_URL}/login?id=${userId}`)
 	.then(res => res.json())
 	.then(user => {
+		console.log(user);
 		userBox.dataset.name = user.name;
 		userBox.dataset.id = user.id;
 	});
+});
+
+specialBoxDiv.addEventListener("click", (e) => {
+
+	if (e.target.id === "buy-button") {
+		if (userBox.dataset.id !== undefined) {
+			console.log("you can boy now!");
+			const itemId = e.target.dataset.id;
+			fetch(`${BASE_URL}/items/${itemId}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json"
+				},
+				body: JSON.stringify({item_id: itemId, user_id: userBox.dataset.id})
+			})
+			.then(res => res.json())
+			.then((json) => {
+				console.log(json);
+				if (json.response === "success")
+					alert("you have bought the item!")
+				else
+					alert("you are not logged in")
+			});
+		}
+		else {
+			alert("You need to login to buy something")
+		}
+	}
 });
 
 
@@ -68,7 +98,7 @@ wrapper.addEventListener("click", (e) => {
 				<h1 class='subtitle'><strong>${itemCard.dataset.name}</strong></h1>
 				<p>${itemCard.dataset.description}</p>
 				<h2>Price: <span class='dolla'>$</span><strong>${itemCard.dataset.price}</strong></h2>
-				<button class='button' style="background-color: orange;" id="buy-button">Buy</button>`
+				<button class='button' style="background-color: orange;" id="buy-button" data-id=${itemCard.dataset.id}>Buy</button>`
 	}
 })
 overlayDiv.addEventListener("click", () => {
@@ -92,7 +122,7 @@ function listItems(item){
 		indexDiv.dataset.price = item.price
 		indexDiv.dataset.state = item.state
 		indexDiv.dataset.img_url = item.img_url
-		indexDiv.dataset.id = item.user_id
+		indexDiv.dataset.id = item.id
 
 	const cardImgDiv = document.createElement('div')
 		cardImgDiv.className = 'card-image'

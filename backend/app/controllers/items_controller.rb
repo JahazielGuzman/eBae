@@ -16,8 +16,19 @@ class ItemsController < ApplicationController
 	end
 
 	def update
-		buyer = User.find(params[:user_id])
-		item = User.find(params[:item_id])
-		item.user = buyer
+			begin
+				user = User.find(params[:user_id])
+				item = Item.find(params[:item_id])
+				item.user = user
+				item.save
+				response = "success"
+			rescue
+				response = "failure"
+			end
+			render json: {response: response}
+	end
+
+	def create
+		
 	end
 end
