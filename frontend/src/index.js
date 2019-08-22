@@ -151,7 +151,7 @@ wrapper.addEventListener("click", (e) => {
 				<h1 class='subtitle'><strong>${itemCard.dataset.name}</strong></h1>
 				<p>${itemCard.dataset.description}</p>
 				<h2>Price: <strong><span class='dolla'>$</span>${itemCard.dataset.price}</strong></h2>
-				<button class='button' style="background-color: orange;" id="buy-button">Buy</button>`
+				<button class='button' style="background-color: orange;" id="buy-button" data-id="${itemCard.dataset.id}" >Buy</button>`
 	}
 })
 overlayDiv.addEventListener("click", () => {
