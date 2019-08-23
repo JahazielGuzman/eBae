@@ -88,8 +88,9 @@ div.new-item {
 
 div#new-item-specialBox-div {
     display: none;
-    position: relative;
+    position: fixed;
     z-index: 3;
+    right: 35%;
     margin: 0px auto 0px auto;
     width: 400px; 
     height: 600px;
@@ -141,7 +142,8 @@ div.overlay {
 
 div.specialBox {
     display: none;
-    position: relative;
+    position: fixed;
+    right: 40%;
     z-index: 3;
     margin: 0px auto 0px auto;
     width: 300px; 

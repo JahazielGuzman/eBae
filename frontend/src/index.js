@@ -262,15 +262,3 @@ newItemForm.addEventListener('submit', () => {
 	})
 
 })
-
-// cancelBtn.addEventListener('click', () => {
-// 	console.log(cancelBtn)
-// 	if(overlayDiv.style.display == "block"){
-// 		console.log("Yo");
-// 		overlayDiv.style.display = "none";
-// 		newItemSpecialBoxDiv.style.display = "none";
-// 	} else {
-// 		overlayDiv.style.display = "block";
-// 		newItemSpecialBoxDiv.style.display = "block";
-// 	}
-// })
