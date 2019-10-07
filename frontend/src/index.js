@@ -15,8 +15,8 @@ specialBoxDiv.className = 'specialBox'
 function initialItems() {
 
 	fetch(ITEMS_URL)
-	.then(res => res.json())
-	.then(itemIndexer);
+		.then(res => res.json())
+		.then(itemIndexer);
 }
 
 initialItems();
@@ -25,17 +25,17 @@ loginButton.addEventListener("click", function () {
 
 	const userId = loginInput.value;
 	fetch(`${BASE_URL}/login?id=${userId}`)
-	.then(res => res.json())
-	.then(user => {
-		console.log(user);
-		userBox.dataset.name = user.name;
-		userBox.dataset.id = user.id;
-	 	Swal.fire({
-			  type: 'success',
-			  title: `Welcome back ${user.name}! Enjoy your shopping experience!`,
-			  showConfirmButton: true,
+		.then(res => res.json())
+		.then(user => {
+			console.log(user);
+			userBox.dataset.name = user.name;
+			userBox.dataset.id = user.id;
+			Swal.fire({
+				type: 'success',
+				title: `Welcome back ${user.name}! Enjoy your shopping experience!`,
+				showConfirmButton: true,
 			})
-	});
+		});
 });
 
 specialBoxDiv.addEventListener("click", (e) => {
@@ -50,68 +50,68 @@ specialBoxDiv.addEventListener("click", (e) => {
 					"Content-Type": "application/json",
 					"Accept": "application/json"
 				},
-				body: JSON.stringify({item_id: itemId, user_id: userBox.dataset.id})
+				body: JSON.stringify({ item_id: itemId, user_id: userBox.dataset.id })
 			})
-			.then(res => res.json())
-			.then((json) => {
-				console.log(json);
-				if (json.response === "success")
-					// you have bought the item
-					Swal.fire({
-					  type: 'success',
-					  title: 'You have bought the item!',
-					  showConfirmButton: true,
-					}).then(
-						() => {
-							overlayDiv.style.opacity = 0;
-							
-							if(overlayDiv.style.display == "block"){
-								overlayDiv.style.display = "none";
-								specialBoxDiv.style.display = "none";
-							} else {
-								overlayDiv.style.display = "block";
-								specialBoxDiv.style.display = "block";
+				.then(res => res.json())
+				.then((json) => {
+					console.log(json);
+					if (json.response === "success")
+						// you have bought the item
+						Swal.fire({
+							type: 'success',
+							title: 'You have bought the item!',
+							showConfirmButton: true,
+						}).then(
+							() => {
+								overlayDiv.style.opacity = 0;
+
+								if (overlayDiv.style.display == "block") {
+									overlayDiv.style.display = "none";
+									specialBoxDiv.style.display = "none";
+								} else {
+									overlayDiv.style.display = "block";
+									specialBoxDiv.style.display = "block";
+								}
 							}
-						}
-					)
-				else
-					// you are not logged in
-					Swal.fire({
-					  type: 'error',
-					  title: 'You must be logged in to buy items!',
-					  showConfirmButton: true,
-					}).then(
-						() => {
-							overlayDiv.style.opacity = 0;
-							
-							if(overlayDiv.style.display == "block"){
-								overlayDiv.style.display = "none";
-								specialBoxDiv.style.display = "none";
-							} else {
-								overlayDiv.style.display = "block";
-								specialBoxDiv.style.display = "block";
+						)
+					else
+						// you are not logged in
+						Swal.fire({
+							type: 'error',
+							title: 'You must be logged in to buy items!',
+							showConfirmButton: true,
+						}).then(
+							() => {
+								overlayDiv.style.opacity = 0;
+
+								if (overlayDiv.style.display == "block") {
+									overlayDiv.style.display = "none";
+									specialBoxDiv.style.display = "none";
+								} else {
+									overlayDiv.style.display = "block";
+									specialBoxDiv.style.display = "block";
+								}
 							}
-						}
-					)
-			});
+						)
+				});
 		}
 		else {
 			// show error because you are not logged in
 			Swal.fire({
-			  type: 'error',
-			  title: 'You must be logged in to buy items!',
-			  showConfirmButton: true,
+				type: 'error',
+				title: 'You must be logged in to buy items!',
+				showConfirmButton: true,
 			}).then(() => {
-					overlayDiv.style.opacity = 0;
-					
-					if(overlayDiv.style.display == "block"){
-						overlayDiv.style.display = "none";
-						specialBoxDiv.style.display = "none";
-					} else {
-						overlayDiv.style.display = "block";
-						specialBoxDiv.style.display = "block";
-					}
-				})
+				overlayDiv.style.opacity = 0;
+
+				if (overlayDiv.style.display == "block") {
+					overlayDiv.style.display = "none";
+					specialBoxDiv.style.display = "none";
+				} else {
+					overlayDiv.style.display = "block";
+					specialBoxDiv.style.display = "block";
+				}
+			})
 		}
 	}
 });
@@ -126,7 +126,7 @@ function searchItems(event) {
 		.then(itemIndexer)
 }
 
-function itemIndexer(items){
+function itemIndexer(items) {
 	items.forEach(listItems)
 }
 
@@ -135,10 +135,10 @@ wrapper.addEventListener("click", (e) => {
 
 	const itemCard = e.target.closest('.item-card');
 	if (itemCard) {
-		
+
 		overlayDiv.style.opacity = .8;
 
-		if(overlayDiv.style.display == "block"){
+		if (overlayDiv.style.display == "block") {
 			overlayDiv.style.display = "none";
 			specialBoxDiv.style.display = "none";
 		} else {
@@ -157,8 +157,8 @@ wrapper.addEventListener("click", (e) => {
 overlayDiv.addEventListener("click", () => {
 	overlayDiv.style.opacity = 0;
 	newItemForm.reset();
-	
-	if(overlayDiv.style.display == "block"){
+
+	if (overlayDiv.style.display == "block") {
 		overlayDiv.style.display = "none";
 		specialBoxDiv.style.display = "none";
 		newItemSpecialBoxDiv.style.display = "none";
@@ -168,46 +168,46 @@ overlayDiv.addEventListener("click", () => {
 	}
 })
 
-function listItems(item){
+function listItems(item) {
 
 	const indexDiv = document.createElement('div')
-		indexDiv.className = "card item-card"
-		indexDiv.dataset.description = item.description;
-		indexDiv.dataset.name = item.name
-		indexDiv.dataset.price = item.price
-		indexDiv.dataset.state = item.state
-		indexDiv.dataset.img_url = item.img_url
-		indexDiv.dataset.id = item.id
-		indexDiv.dataset.user_id = item.user_id
+	indexDiv.className = "card item-card"
+	indexDiv.dataset.description = item.description;
+	indexDiv.dataset.name = item.name
+	indexDiv.dataset.price = item.price
+	indexDiv.dataset.state = item.state
+	indexDiv.dataset.img_url = item.img_url
+	indexDiv.dataset.id = item.id
+	indexDiv.dataset.user_id = item.user_id
 
 	const cardImgDiv = document.createElement('div')
-		cardImgDiv.className = 'card-image'
+	cardImgDiv.className = 'card-image'
 	const cardFigure = document.createElement('figure')
-		cardFigure.className = 'image is-4by3'
-		cardFigure.innerHTML = `<img src="${item.img_url}">`
+	cardFigure.className = 'image is-4by3'
+	cardFigure.innerHTML = `<img src="${item.img_url}">`
 	const contentDiv = document.createElement('div')
-		contentDiv.className = 'card-content'
-		contentDiv.innerHTML = `
+	contentDiv.className = 'card-content'
+	contentDiv.innerHTML = `
 			<h1 class='subtitle'><strong>${item.name}</strong></h1>
 			<p>${item.description}</p>`
 
-		wrapper.appendChild(indexDiv)
-		indexDiv.appendChild(cardImgDiv)
-		indexDiv.appendChild(contentDiv)
-		cardImgDiv.appendChild(cardFigure)
+	wrapper.appendChild(indexDiv)
+	indexDiv.appendChild(cardImgDiv)
+	indexDiv.appendChild(contentDiv)
+	cardImgDiv.appendChild(cardFigure)
 
-	}
-	
-	//--------------------New Item--------------->
-	
-	const newItemBtn = document.getElementById('new-item-btn')
-	const newItemSpecialBoxDiv = document.getElementById('new-item-specialBox-div')
-	const cancelBtn = document.getElementById('cancel')
-	
+}
+
+//--------------------New Item--------------->
+
+const newItemBtn = document.getElementById('new-item-btn')
+const newItemSpecialBoxDiv = document.getElementById('new-item-specialBox-div')
+const cancelBtn = document.getElementById('cancel')
+
 newItemBtn.addEventListener('click', () => {
 	overlayDiv.style.opacity = 0.8;
-	
-	if(overlayDiv.style.display == "block"){
+
+	if (overlayDiv.style.display == "block") {
 		overlayDiv.style.display = "none";
 		newItemSpecialBoxDiv.style.display = "none";
 	} else {
@@ -229,11 +229,11 @@ newItemForm.addEventListener('submit', () => {
 	fetch(ITEMS_URL, {
 		method: "POST",
 		headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-		}, 
-		body: JSON.stringify({ 
-            "name": nameInput.value, 
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			"name": nameInput.value,
 			"description": descInput.value,
 			"price": priceInput.value,
 			"img_url": imgInput.value,
@@ -241,24 +241,24 @@ newItemForm.addEventListener('submit', () => {
 			"state": "sell"
 		})
 	}).then(res => res.json())
-	.then((item) => {
-		listItems(item);
-		newItemForm.reset();
-		return Swal.fire({
-			type: 'success',
-			title: 'Your item is up for sale! Happy Selling!',
-			showConfirmButton: true
+		.then((item) => {
+			listItems(item);
+			newItemForm.reset();
+			return Swal.fire({
+				type: 'success',
+				title: 'Your item is up for sale! Happy Selling!',
+				showConfirmButton: true
+			})
+		}).then(() => {
+			overlayDiv.style.opacity = 0.8;
+
+			if (overlayDiv.style.display == "block") {
+				overlayDiv.style.display = "none";
+				newItemSpecialBoxDiv.style.display = "none";
+			} else {
+				overlayDiv.style.display = "block";
+				newItemSpecialBoxDiv.style.display = "block";
+			}
 		})
-	}).then(() => {
-		overlayDiv.style.opacity = 0.8;
-		
-		if(overlayDiv.style.display == "block"){
-			overlayDiv.style.display = "none";
-			newItemSpecialBoxDiv.style.display = "none";
-		} else {
-			overlayDiv.style.display = "block";
-			newItemSpecialBoxDiv.style.display = "block";
-		}
-	})
 
 })
