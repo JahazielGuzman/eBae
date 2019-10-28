@@ -16,6 +16,8 @@ Backend/.bundle
 /backend/tmp/*
 /tmp/*
 /log/*
+tmp/
+log/
 !/log/.keep
 !/tmp/.keep
 

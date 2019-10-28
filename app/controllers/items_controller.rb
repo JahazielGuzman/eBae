@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
 					}
 			}
 		else
-			items = Item.all
+			items = Item.where(state: "sell")
 		end
 		render json: items
 	end
@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 				user = User.find(params[:user_id])
 				item = Item.find(params[:item_id])
 				item.user = user
+				item.state = "bought"
 				item.save
 				response = "success"
 			rescue

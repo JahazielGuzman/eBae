@@ -18,8 +18,12 @@ class UsersController < ApplicationController
 		render json: session[:user]
 	end
 
-	def current
-		# get the value of SESSION[:user]
+	def bought_items
+		render json: Item.where(user_id: params[:id], state: "bought")
+	end	
+
+	def selling_items
+		render json: Item.where(user_id: params[:id], state: "sell")
 	end
 
 end
