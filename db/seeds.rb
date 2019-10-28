@@ -9,15 +9,15 @@
 # User.delete_all
 Item.delete_all
 
-5.times do
-	User.create(name: Faker::GreekPhilosophers.name, balance: (50..500).to_a.sample, img_url: "..\\pubic\\I60Hf.png")
+7.times do
+	User.create(name: Faker::GreekPhilosophers.name, balance: (50..500).to_a.sample, img_url: "./images/l60Hf.png")
 end
 
-10.times do
+30.times do
 	Item.create(name: Faker::Commerce.product_name, 
 		description: Faker::Quotes::Shakespeare.hamlet_quote, 
 		state: "sell",
 		price: (10..100).to_a.sample,
-		img_url: "..\\backend\\public\\l60Hf.png",
+		img_url: "./images/l60Hf.png",
 		user: User.all.sample)
 end
