@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.delete_all
 Item.delete_all
+User.delete_all
 
 7.times do
 	User.create(name: Faker::GreekPhilosophers.name, balance: (50..500).to_a.sample, img_url: "./images/l60Hf.png")
