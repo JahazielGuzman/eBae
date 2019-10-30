@@ -6,11 +6,16 @@ class ItemsController < ApplicationController
 			items = Item.where("LOWER(name) LIKE LOWER(?)", search_query)
 			items = items.map{|item| {id: item.id, name: item.name, description: item.description, 
 					price: item.price,state: item.state, img_url: item.img_url,
-					user: item.user
+					user: item.user, user_name: item.user.name
 					}
 			}
 		else
 			items = Item.where(state: "sell")
+			items = items.map{|item| {id: item.id, name: item.name, description: item.description, 
+				price: item.price,state: item.state, img_url: item.img_url,
+				user_id: item.user.id, user_name: item.user.name
+				}
+			}
 		end
 		render json: items
 	end

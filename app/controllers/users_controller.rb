@@ -19,7 +19,12 @@ class UsersController < ApplicationController
 	end
 
 	def bought_items
-		render json: Item.where(user_id: params[:id], state: "bought")
+		items = Item.where(user_id: params[:id], state: "bought")
+		items = items.map{|item| {id: item.id, name: item.name, description: item.description, 
+			price: item.price,state: item.state, img_url: item.img_url,
+			user_id: item.user.id, user_name: item.user.name
+			}
+		render json: items
 	end	
 
 	def selling_items
