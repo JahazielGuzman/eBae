@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 			items = Item.where("LOWER(name) LIKE LOWER(?)", search_query)
 			items = items.map{|item| {id: item.id, name: item.name, description: item.description, 
 					price: item.price,state: item.state, img_url: item.img_url,
-					user: item.user, user_name: item.user.name
+					user_id: item.user, user_name: item.user.name
 					}
 			}
 		else
