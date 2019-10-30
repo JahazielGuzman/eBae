@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 			price: item.price,state: item.state, img_url: item.img_url,
 			user_id: item.user.id, user_name: item.user.name
 			}
+		}
 		render json: items
 	end	
 
