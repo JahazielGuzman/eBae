@@ -1,24 +1,38 @@
-# README
+# eBae
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A peer-to-peer marketplace where users can buy and sell items. You can also search for items. This project was made for Module 3 of Flatiron School's Software Engineering Intensive program. Module 3 was focused on learning Vanilla Javascript.
 
-Things you may want to cover:
+This repository is for the Rails backend, visit [here](https://github.com/JahazielGuzman/ebae-frontend) for the front-end code base
 
-* Ruby version
+[Click here for the hosted app.](http://ebae.jahazielguzman.com) Rails app was deployed to Heroku.
 
-* System dependencies
+Some of the techniques used to create this app:
++ Implemented Active Record models to store user accounts and items for sale.
++ Displayed item information and search query results from Rails.
++ Presented all information using vanilla javascript and the DOM API.
 
-* Configuration
 
-* Database creation
+### How to run
 
-* Database initialization
+1. cd to project directory
 
-* How to run the test suite
+2. `bundle install`
 
-* Services (job queues, cache servers, search engines, etc.)
+3. `rails db:create`
 
-* Deployment instructions
+4. `rails db:migrate`
 
-* ...
+5. `rails db:seed`
+
+and finally
+
+6. `rails s`
+
+### Built With
+* Ruby on Rails
+* Javascript
+* PostgreSQL
+* ActiveRecord
+* HTML
+* CSS
+* Bulma
