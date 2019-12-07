@@ -1,8 +1,11 @@
 class ItemsController < ApplicationController
 
 	def index
+		# check for params[:user_id], if it is populated then change query to 
+		# return items that are not being sold by the user
 		if params[:search]
 			search_query = "%" + params[:search].split(' ').join('%') + "%"
+			# only include items that are being sold
 			items = Item.where("LOWER(name) LIKE LOWER(?)", search_query)
 			items = items.map{|item| {id: item.id, name: item.name, description: item.description, 
 					price: item.price,state: item.state, img_url: item.img_url,
