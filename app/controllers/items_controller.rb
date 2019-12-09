@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 		if params[:search]
 			search_query = "%" + params[:search].split(' ').join('%') + "%"
 			# only include items that are being sold
-			items = Item.where("LOWER(name) LIKE LOWER(?) AND user_id != ?", search_query)
+			items = Item.where("LOWER(name) LIKE LOWER(?)", search_query)
 		else
 			items = Item.where(state: "sell")
 		end
